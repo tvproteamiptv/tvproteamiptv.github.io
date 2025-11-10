@@ -3,20 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TvProTeam - Servicio de TV Premium</title>
+    <title>TVPROTEAM - IPTV Deportivo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --success-color: #2ecc71;
-            --whatsapp-color: #25D366;
-            --telegram-color: #0088cc;
-        }
-        
+        /* Estilos generales */
         * {
             margin: 0;
             padding: 0;
@@ -25,28 +15,26 @@
         }
         
         body {
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #0a0f1e;
+            color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
         
         /* Header */
         header {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            background: linear-gradient(to right, #1a2a57, #0d1b3a);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
         }
         
         .header-content {
@@ -56,14 +44,22 @@
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
         
-        .logo span {
-            color: var(--primary-color);
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, #ff6b00, #ff9d00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: 10px;
+        }
+        
+        .logo i {
+            font-size: 32px;
+            color: #ff6b00;
         }
         
         nav ul {
@@ -72,108 +68,105 @@
         }
         
         nav ul li {
-            margin-left: 1.5rem;
+            margin-left: 25px;
         }
         
         nav ul li a {
-            color: white;
+            color: #fff;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
         }
         
         nav ul li a:hover {
-            color: var(--primary-color);
+            color: #ff6b00;
         }
         
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
+        .btn {
+            background: linear-gradient(to right, #ff6b00, #ff9d00);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
             cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.4);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(10, 15, 30, 0.8), rgba(10, 15, 30, 0.9)), url('https://images.unsplash.com/photo-1556056504-5c7696c4c28d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
-            color: white;
-            padding: 10rem 0 5rem;
+            padding: 100px 0;
             text-align: center;
         }
         
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 20px;
             max-width: 700px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 30px;
+            color: #e0e0e0;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #2980b9;
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
         }
         
         .btn-secondary {
-            background-color: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-secondary:hover {
-            background-color: rgba(255,255,255,0.1);
+            background: transparent;
+            border: 2px solid #ff6b00;
+            color: #ff6b00;
         }
         
         /* Features Section */
         .features {
-            padding: 5rem 0;
-            background-color: white;
+            padding: 80px 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 50px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #ff9d00;
         }
         
         .section-title p {
-            color: #666;
-            max-width: 700px;
+            color: #b0b0b0;
+            max-width: 600px;
             margin: 0 auto;
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 30px;
         }
         
         .feature-card {
-            background-color: var(--light-color);
-            padding: 2rem;
+            background: linear-gradient(145deg, #152340, #0e1729);
             border-radius: 10px;
+            padding: 30px;
             text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
         }
         
@@ -182,38 +175,120 @@
         }
         
         .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-size: 50px;
+            color: #ff6b00;
+            margin-bottom: 20px;
         }
         
         .feature-card h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #b0b0b0;
+        }
+        
+        /* Channels Section */
+        .channels {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #0a0f1e, #152340);
+        }
+        
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .channel-card {
+            background: #152340;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .channel-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+        }
+        
+        .channel-logo {
+            width: 80px;
+            height: 80px;
+            background: #1e2f5a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 30px;
+            color: #ff6b00;
+        }
+        
+        /* Sports Section */
+        .sports {
+            padding: 80px 0;
+        }
+        
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .sport-card {
+            background: linear-gradient(145deg, #152340, #0e1729);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .sport-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .sport-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .sport-content {
+            padding: 20px;
+        }
+        
+        .sport-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
         }
         
         /* Pricing Section */
         .pricing {
-            padding: 5rem 0;
-            background-color: #f5f5f5;
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #152340, #0a0f1e);
         }
         
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            gap: 30px;
+            margin-top: 40px;
         }
         
         .pricing-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2.5rem;
+            background: linear-gradient(145deg, #1a2a57, #0d1b3a);
+            border-radius: 15px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s;
             position: relative;
+            overflow: hidden;
         }
         
         .pricing-card:hover {
@@ -221,198 +296,154 @@
         }
         
         .pricing-card.popular {
-            border: 2px solid var(--primary-color);
+            border: 2px solid #ff6b00;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
         }
         
         .popular-badge {
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--primary-color);
+            top: 20px;
+            right: -30px;
+            background: #ff6b00;
             color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 14px;
             font-weight: bold;
         }
         
         .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ff9d00;
         }
         
         .price {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
         }
         
         .price span {
-            font-size: 1rem;
-            color: #666;
+            font-size: 16px;
+            color: #b0b0b0;
         }
         
         .pricing-features {
             list-style: none;
-            margin: 2rem 0;
+            margin: 30px 0;
             text-align: left;
         }
         
         .pricing-features li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
+            margin-bottom: 15px;
+            padding-left: 30px;
             position: relative;
         }
         
         .pricing-features li:before {
             content: "✓";
-            color: var(--success-color);
             position: absolute;
             left: 0;
+            color: #ff6b00;
+            font-weight: bold;
         }
         
-        /* How It Works */
-        .how-it-works {
-            padding: 5rem 0;
-            background-color: white;
+        /* Movies Section */
+        .movies {
+            padding: 80px 0;
+            overflow: hidden;
         }
         
-        .steps {
+        .movies-container {
+            position: relative;
+            margin-top: 40px;
+        }
+        
+        .movies-carousel {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 20px;
+            padding: 20px 10px;
+            animation: scrollMovies 40s linear infinite;
         }
         
-        .step {
-            flex: 1;
-            min-width: 200px;
+        @keyframes scrollMovies {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-220px * 12));
+            }
+        }
+        
+        .movie-card {
+            flex: 0 0 auto;
+            width: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .movie-card:hover {
+            transform: scale(1.05);
+            animation-play-state: paused;
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .movie-title {
+            padding: 15px;
+            background: #152340;
             text-align: center;
-            padding: 1.5rem;
-            margin: 1rem;
+            font-weight: 600;
         }
         
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 1rem;
-        }
-        
-        /* FAQ Section */
-        .faq {
-            padding: 5rem 0;
-            background-color: #f5f5f5;
-        }
-        
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .faq-question {
-            background-color: white;
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-        }
-        
-        .faq-answer {
-            background-color: white;
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s, padding 0.3s;
-        }
-        
-        .faq-answer.active {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background-color: white;
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(to right, #1a2a57, #0d1b3a);
+            padding: 80px 0;
             text-align: center;
         }
         
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
         }
         
-        .contact-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            color: white;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        
-        .contact-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
-        
-        .whatsapp-btn {
-            background-color: var(--whatsapp-color);
-        }
-        
-        .telegram-btn {
-            background-color: var(--telegram-color);
-        }
-        
-        .contact-btn i {
-            font-size: 1.5rem;
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #e0e0e0;
         }
         
         /* Footer */
         footer {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 3rem 0 1rem;
+            background: #0a0f1e;
+            padding: 50px 0 20px;
+            border-top: 1px solid #1e2f5a;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
         .footer-column h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #ff9d00;
         }
         
         .footer-column ul {
@@ -420,296 +451,600 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 10px;
         }
         
         .footer-column ul li a {
-            color: #bbb;
+            color: #b0b0b0;
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .footer-column ul li a:hover {
-            color: white;
+            color: #ff6b00;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #1e2f5a;
+            border-radius: 50%;
+            color: #fff;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #ff6b00;
+            transform: translateY(-5px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bbb;
-            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #1e2f5a;
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+        
+        /* Botones flotantes de WhatsApp y Telegram */
+        .float-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .float-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+        }
+        
+        .telegram-btn {
+            background: #0088cc;
+        }
+        
+        /* Popup de Prueba Gratis */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .popup-content {
+            background: linear-gradient(145deg, #1a2a57, #0d1b3a);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .popup-close:hover {
+            color: #ff6b00;
+        }
+        
+        .popup-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff9d00;
+        }
+        
+        .popup-content p {
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+        
+        .popup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .popup-form input {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #1e2f5a;
+            background: #0a0f1e;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .popup-form input:focus {
+            outline: none;
+            border-color: #ff6b00;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .mobile-menu {
-                display: block;
+            .header-content {
+                flex-direction: column;
+                text-align: center;
             }
             
             nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--secondary-color);
-                flex-direction: column;
-                padding: 1rem 0;
-            }
-            
-            nav ul.active {
-                display: flex;
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             nav ul li {
-                margin: 0;
-                text-align: center;
-                padding: 0.8rem 0;
+                margin: 5px 10px;
             }
             
-            .hero h1 {
-                font-size: 2.2rem;
+            .hero h2 {
+                font-size: 36px;
             }
             
-            .btn-secondary {
-                margin-left: 0;
-                margin-top: 1rem;
-                display: block;
+            .hero p {
+                font-size: 18px;
             }
             
-            .steps {
-                flex-direction: column;
-            }
-            
-            .contact-buttons {
+            .hero-btns {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .contact-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: scale(1) translateY(-10px);
+            }
+            
+            .float-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .movies-carousel {
+                animation: scrollMovies 60s linear infinite;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Botones flotantes de WhatsApp y Telegram -->
+    <div class="float-buttons">
+        <a href="https://wa.me/34614617984" class="float-btn whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://t.me/TVPROTEAM" class="float-btn telegram-btn" target="_blank">
+            <i class="fab fa-telegram"></i>
+        </a>
+    </div>
+
+    <!-- Popup de Prueba Gratis -->
+    <div class="popup-overlay" id="trialPopup">
+        <div class="popup-content">
+            <span class="popup-close" id="closePopup">&times;</span>
+            <h3>¡24 Horas de Prueba Gratis!</h3>
+            <p>Disfruta de todos nuestros canales y contenido durante 24 horas completamente gratis. Completa el formulario y te enviaremos tus credenciales de acceso.</p>
+            <form class="popup-form">
+                <input type="text" placeholder="Nombre completo" required>
+                <input type="email" placeholder="Correo electrónico" required>
+                <input type="tel" placeholder="Teléfono" required>
+                <button type="submit" class="btn">OBTENER PRUEBA GRATIS</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">Tv<span>Pro</span>Team</a>
-                <div class="mobile-menu">☰</div>
+                <div class="logo">
+                    <i class="fas fa-tv"></i>
+                    <h1>TVPROTEAM</h1>
+                </div>
                 <nav>
                     <ul>
-                        <li><a href="#features">Características</a></li>
-                        <li><a href="#pricing">Precios</a></li>
-                        <li><a href="#how-it-works">Cómo Funciona</a></li>
-                        <li><a href="#contact">Contacto</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#" class="btn">Comenzar</a></li>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#canales">Canales</a></li>
+                        <li><a href="#deportes">Deportes</a></li>
+                        <li><a href="#peliculas">Películas</a></li>
+                        <li><a href="#precios">Precios</a></li>
                     </ul>
                 </nav>
+                <button class="btn" id="openTrialBtn">PRUEBA GRATIS</button>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="inicio">
         <div class="container">
-            <h1>La mejor experiencia de TV en un solo lugar</h1>
-            <p>Disfruta de miles de canales, películas y series con la mejor calidad. App incluida en todos los planes.</p>
-            <a href="#pricing" class="btn">Ver Planes</a>
-            <a href="#how-it-works" class="btn btn-secondary">Cómo Funciona</a>
+            <h2>TVPROTEAM - IPTV Deportivo Premium</h2>
+            <p>Con TVPROTEAM podemos ofrecerte acceso a más de 11000 canales de IPTV de todos los países del mundo. ¡Descubre la lista de canales y no te sentirás decepcionado!</p>
+            <div class="hero-btns">
+                <button class="btn" id="heroTrialBtn">PRUEBA GRATIS 24H</button>
+                <button class="btn btn-secondary">VER PLANES</button>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section class="features">
         <div class="container">
             <div class="section-title">
-                <h2>Características Principales</h2>
-                <p>Descubre todo lo que ofrece TvProTeam para transformar tu experiencia de entretenimiento</p>
+                <h2>Todo lo que necesitas en un solo lugar</h2>
+                <p>Hemos hecho posible lo imposible, con una biblioteca completa de miles de películas y series</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📺</div>
-                    <h3>Miles de Canales</h3>
-                    <p>Accede a una amplia selección de canales nacionales e internacionales de todos los géneros.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Canales en Vivo</h3>
+                    <p>Más de 11,000 canales de todo el mundo, incluyendo deportes, noticias, entretenimiento y más.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎬</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
                     <h3>Películas y Series</h3>
-                    <p>Disfruta del catálogo más completo de películas y series actualizadas constantemente.</p>
+                    <p>Biblioteca completa con miles de películas y series. Ve trailers, lee críticas y obtén detalles.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>App Incluida</h3>
-                    <p>Accede desde cualquier dispositivo con nuestra aplicación exclusiva incluida en tu suscripción.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Eventos Deportivos</h3>
+                    <p>No te pierdas ningún partido. Transmisiones en HD de fútbol, baloncesto, tenis y más.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Alta Velocidad</h3>
-                    <p>Transmisión fluida sin interrupciones gracias a nuestros servidores de alta velocidad.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Multiplataforma</h3>
+                    <p>Disfruta en cualquier dispositivo: Smart TV, móvil, tablet, computadora o consola.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Seguro y Estable</h3>
-                    <p>Servicio confiable con protección avanzada para garantizar tu privacidad y seguridad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channels Section -->
+    <section class="channels" id="canales">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Canales Populares</h2>
+                <p>Accede a canales premium de deportes, películas y entretenimiento de todo el mundo</p>
+            </div>
+            <div class="channels-grid">
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-satellite-dish"></i>
+                    </div>
+                    <h3>Movistar+</h3>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Actualizaciones Constantes</h3>
-                    <p>Contenido actualizado diariamente para que nunca te pierdas lo último en entretenimiento.</p>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Liga</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>DAZN</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3>Moto GP</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <h3>Fórmula 1</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Netflix</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fab fa-amazon"></i>
+                    </div>
+                    <h3>Amazon Prime</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3>HBO Max</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-basketball-ball"></i>
+                    </div>
+                    <h3>NBA TV</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Sky Sports</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3>BeIN Sports</h3>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-logo">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <h3>Disney+</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sports Section -->
+    <section class="sports" id="deportes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Deportes en Vivo</h2>
+                <p>No te pierdas ningún evento deportivo importante. Transmisiones en alta definición</p>
+            </div>
+            <div class="sports-grid">
+                <div class="sport-card">
+                    <div class="sport-img" style="background-image: url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');"></div>
+                    <div class="sport-content">
+                        <h3>Fútbol</h3>
+                        <p>Ligas principales, Champions League, Copa del Mundo y más.</p>
+                    </div>
+                </div>
+                <div class="sport-card">
+                    <div class="sport-img" style="background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');"></div>
+                    <div class="sport-content">
+                        <h3>Baloncesto</h3>
+                        <p>NBA, Euroliga, competiciones nacionales e internacionales.</p>
+                    </div>
+                </div>
+                <div class="sport-card">
+                    <div class="sport-img" style="background-image: url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="sport-content">
+                        <h3>Tenis</h3>
+                        <p>Grand Slams, torneos ATP y WTA en directo.</p>
+                    </div>
+                </div>
+                <div class="sport-card">
+                    <div class="sport-img" style="background-image: url('https://images.unsplash.com/photo-1588347818122-c6f4e0dfbace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="sport-content">
+                        <h3>Fórmula 1</h3>
+                        <p>Todas las carreras, clasificaciones y entrenamientos.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
+    <section class="pricing" id="precios">
         <div class="container">
             <div class="section-title">
                 <h2>Planes de Suscripción</h2>
-                <p>Elige el plan que mejor se adapte a tus necesidades. Ambos incluyen acceso completo a la app.</p>
+                <p>Elige el plan que mejor se adapte a tus necesidades</p>
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Plan Mensual</h3>
                     <div class="price">15€<span>/mes</span></div>
                     <ul class="pricing-features">
-                        <li>Acceso a todos los canales</li>
-                        <li>Miles de películas y series</li>
-                        <li>App incluida para todos tus dispositivos</li>
-                        <li>Soporte técnico 24/7</li>
-                        <li>Calidad Full HD y 4K</li>
-                        <li>Actualizaciones diarias</li>
+                        <li>Más de 11,000 canales</li>
+                        <li>Eventos deportivos en vivo</li>
+                        <li>Películas y series ilimitadas</li>
+                        <li>Soporte 24/7</li>
+                        <li>Calidad Full HD/4K</li>
+                        <li>Guía de programación EPG</li>
                     </ul>
-                    <a href="#contact" class="btn">Seleccionar Plan</a>
+                    <button class="btn">SUSCRIBIRSE</button>
                 </div>
                 <div class="pricing-card popular">
-                    <div class="popular-badge">Más Popular</div>
+                    <div class="popular-badge">POPULAR</div>
                     <h3>Plan Anual</h3>
-                    <div class="price">100€<span>/año</span></div>
-                    <p style="margin-bottom: 1rem; color: #666;">Ahorra 80€ frente al plan mensual</p>
+                    <div class="price">80€<span>/año</span></div>
                     <ul class="pricing-features">
-                        <li>Acceso a todos los canales</li>
-                        <li>Miles de películas y series</li>
-                        <li>App incluida para todos tus dispositivos</li>
-                        <li>Soporte técnico prioritario</li>
-                        <li>Calidad Full HD y 4K</li>
-                        <li>Actualizaciones diarias</li>
-                        <li>2 meses gratis</li>
+                        <li>Más de 11,000 canales</li>
+                        <li>Eventos deportivos en vivo</li>
+                        <li>Películas y series ilimitadas</li>
+                        <li>Soporte 24/7</li>
+                        <li>Calidad Full HD/4K</li>
+                        <li>Guía de programación EPG</li>
+                        <li>Ahorras 100€ al año</li>
                     </ul>
-                    <a href="#contact" class="btn">Seleccionar Plan</a>
+                    <button class="btn">SUSCRIBIRSE</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
+    <!-- Movies Section -->
+    <section class="movies" id="peliculas">
         <div class="container">
             <div class="section-title">
-                <h2>Cómo Funciona</h2>
-                <p>En solo 3 sencillos pasos podrás disfrutar de TvProTeam</p>
+                <h2>Películas y Series</h2>
+                <p>Descubre nuestra amplia biblioteca de contenido</p>
             </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Elige tu Plan</h3>
-                    <p>Selecciona entre el plan mensual o anual según tus necesidades.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Contáctanos</h3>
-                    <p>Escoge tu plan y contáctanos por WhatsApp o Telegram para activar tu suscripción.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Disfruta</h3>
-                    <p>Descarga la app, inicia sesión y comienza a disfrutar del contenido.</p>
+            <div class="movies-container">
+                <div class="movies-carousel">
+                    <!-- Primera tanda de películas -->
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_FMjpg_UX1000_.jpg" alt="Avatar" class="movie-poster">
+                        <div class="movie-title">Avatar 2</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BOTdmNTFjNDEtNzg0My00ZjkxLTg1ZDAtZTdkMDc2ZmFiNWQ1XkEyXkFqcGdeQXVyNTAzNzgwNTg@._V1_FMjpg_UX1000_.jpg" alt="1917" class="movie-poster">
+                        <div class="movie-title">1917</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMzFkM2YwOTQtYzk2Mi00N2VlLWE3NTItN2YwNDg1YmY0ZDNmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt="Home Alone" class="movie-poster">
+                        <div class="movie-title">Solo en Casa</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg" alt="Avengers" class="movie-poster">
+                        <div class="movie-title">Avengers</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg" alt="The Dark Knight" class="movie-poster">
+                        <div class="movie-title">Batman</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt="The Avengers" class="movie-poster">
+                        <div class="movie-title">Avengers</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg" alt="Iron Man" class="movie-poster">
+                        <div class="movie-title">Iron Man</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTM0ODk3MjM1MV5BMl5BanBnXkFtZTcwNzc1MDIwNA@@._V1_FMjpg_UX1000_.jpg" alt="Fast & Furious" class="movie-poster">
+                        <div class="movie-title">Rápidos y Furiosos</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_FMjpg_UX1000_.jpg" alt="John Wick" class="movie-poster">
+                        <div class="movie-title">John Wick</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTM3OTU0MDY3NF5BMl5BanBnXkFtZTcwNDUzNDkzMQ@@._V1_FMjpg_UX1000_.jpg" alt="Spider-Man" class="movie-poster">
+                        <div class="movie-title">Spider-Man</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTc0MTQ3NzE1N15BMl5BanBnXkFtZTcwNjU4MDY0Mg@@._V1_FMjpg_UX1000_.jpg" alt="Transformers" class="movie-poster">
+                        <div class="movie-title">Transformers</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTk4MDk1Njk5OV5BMl5BanBnXkFtZTcwODQyMjY1Mg@@._V1_FMjpg_UX1000_.jpg" alt="Pirates" class="movie-poster">
+                        <div class="movie-title">Piratas del Caribe</div>
+                    </div>
+                    
+                    <!-- Duplicado para efecto continuo -->
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_FMjpg_UX1000_.jpg" alt="Avatar" class="movie-poster">
+                        <div class="movie-title">Avatar 2</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BOTdmNTFjNDEtNzg0My00ZjkxLTg1ZDAtZTdkMDc2ZmFiNWQ1XkEyXkFqcGdeQXVyNTAzNzgwNTg@._V1_FMjpg_UX1000_.jpg" alt="1917" class="movie-poster">
+                        <div class="movie-title">1917</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMzFkM2YwOTQtYzk2Mi00N2VlLWE3NTItN2YwNDg1YmY0ZDNmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt="Home Alone" class="movie-poster">
+                        <div class="movie-title">Solo en Casa</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg" alt="Avengers" class="movie-poster">
+                        <div class="movie-title">Avengers</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg" alt="The Dark Knight" class="movie-poster">
+                        <div class="movie-title">Batman</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt="The Avengers" class="movie-poster">
+                        <div class="movie-title">Avengers</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg" alt="Iron Man" class="movie-poster">
+                        <div class="movie-title">Iron Man</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTM0ODk3MjM1MV5BMl5BanBnXkFtZTcwNzc1MDIwNA@@._V1_FMjpg_UX1000_.jpg" alt="Fast & Furious" class="movie-poster">
+                        <div class="movie-title">Rápidos y Furiosos</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_FMjpg_UX1000_.jpg" alt="John Wick" class="movie-poster">
+                        <div class="movie-title">John Wick</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTM3OTU0MDY3NF5BMl5BanBnXkFtZTcwNDUzNDkzMQ@@._V1_FMjpg_UX1000_.jpg" alt="Spider-Man" class="movie-poster">
+                        <div class="movie-title">Spider-Man</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTc0MTQ3NzE1N15BMl5BanBnXkFtZTcwNjU4MDY0Mg@@._V1_FMjpg_UX1000_.jpg" alt="Transformers" class="movie-poster">
+                        <div class="movie-title">Transformers</div>
+                    </div>
+                    <div class="movie-card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTk4MDk1Njk5OV5BMl5BanBnXkFtZTcwODQyMjY1Mg@@._V1_FMjpg_UX1000_.jpg" alt="Pirates" class="movie-poster">
+                        <div class="movie-title">Piratas del Caribe</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- CTA Section -->
+    <section class="cta">
         <div class="container">
-            <div class="section-title">
-                <h2>Contáctanos</h2>
-                <p>Elige tu plan y contáctanos para activar tu suscripción</p>
-            </div>
-            <div class="contact-buttons">
-                <a href="https://wa.me/34614617984?text=Hola,%20estoy%20interesado%20en%20el%20servicio%20TvProTeam" class="contact-btn whatsapp-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp: 614 61 79 84</span>
-                </a>
-                <a href="https://t.me/TvProTeam" class="contact-btn telegram-btn" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                    <span>Telegram: @TvProTeam</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-title">
-                <h2>Preguntas Frecuentes</h2>
-                <p>Resolvemos tus dudas más comunes sobre TvProTeam</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>¿En qué dispositivos funciona la app?</span>
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nuestra aplicación es compatible con Smart TV, Android TV, Fire TV, dispositivos Android e iOS, así como en ordenadores Windows y Mac.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>¿Puedo ver contenido en calidad 4K?</span>
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sí, todos nuestros planes incluyen contenido en calidad Full HD y 4K, dependiendo de la disponibilidad del canal o película.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>¿Ofrecen prueba gratuita?</span>
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Actualmente no ofrecemos prueba gratuita, pero puedes cancelar en cualquier momento si no estás satisfecho con el servicio.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>¿Cómo es el proceso de pago?</span>
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Aceptamos tarjetas de crédito/débito, PayPal y transferencias bancarias. Todos los pagos son procesados de forma segura.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>¿Puedo usar la app en varios dispositivos a la vez?</span>
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sí, puedes usar la app en hasta 3 dispositivos simultáneamente con una sola cuenta.</p>
-                    </div>
-                </div>
-            </div>
+            <h2>Únete a TVPROTEAM hoy mismo</h2>
+            <p>Elegir la película adecuada nunca ha sido tan fácil. Obtén la última información sobre los próximos estrenos de películas.</p>
+            <button class="btn" id="ctaTrialBtn">PRUEBA GRATIS 24H</button>
         </div>
     </section>
 
@@ -718,56 +1053,45 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>TvProTeam</h3>
-                    <p>El mejor servicio de TV por streaming con la más amplia selección de contenido y la mejor calidad.</p>
+                    <h3>TVPROTEAM</h3>
+                    <p>El mejor servicio de IPTV deportivo con más de 11,000 canales y una amplia biblioteca de películas y series.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <h3>Enlaces Rápidos</h3>
                     <ul>
-                        <li><a href="#features">Características</a></li>
-                        <li><a href="#pricing">Precios</a></li>
-                        <li><a href="#how-it-works">Cómo Funciona</a></li>
-                        <li><a href="#contact">Contacto</a></li>
-                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#canales">Canales</a></li>
+                        <li><a href="#deportes">Deportes</a></li>
+                        <li><a href="#peliculas">Películas</a></li>
+                        <li><a href="#precios">Precios</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Soporte</h3>
+                    <h3>Contacto</h3>
                     <ul>
-                        <li><a href="https://wa.me/34614617984" target="_blank">WhatsApp</a></li>
-                        <li><a href="https://t.me/TvProTeam" target="_blank">Telegram</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Términos de Servicio</a></li>
+                        <li><i class="fas fa-envelope"></i> info@tvproteam.com</li>
+                        <li><i class="fas fa-phone"></i> +34 614 617 984</li>
+                        <li><i class="fab fa-whatsapp"></i> WhatsApp: 614617984</li>
+                        <li><i class="fab fa-telegram"></i> Telegram: TVPROTEAM</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 TvProTeam. Todos los derechos reservados.</p>
+                <p>&copy; 2023 TVPROTEAM. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                answer.classList.toggle('active');
-                
-                // Change the plus/minus icon
-                const icon = question.querySelector('span:last-child');
-                icon.textContent = answer.classList.contains('active') ? '−' : '+';
-            });
-        });
-
-        // Smooth scrolling for anchor links
+        // Smooth scrolling para los enlaces de navegación
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
@@ -779,12 +1103,62 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    document.querySelector('nav ul').classList.remove('active');
                 }
             });
         });
+        
+        // Efecto de scroll para el header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 15, 30, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(to right, #1a2a57, #0d1b3a)';
+            }
+        });
+        
+        // Animación para los botones de suscripción
+        document.querySelectorAll('.btn').forEach(button => {
+            if (!button.id.includes('Trial')) {
+                button.addEventListener('click', function() {
+                    alert('¡Gracias por tu interés en TVPROTEAM! Serás redirigido a nuestra página de suscripción.');
+                });
+            }
+        });
+        
+        // Funcionalidad del popup de prueba gratis
+        const trialPopup = document.getElementById('trialPopup');
+        const openTrialBtn = document.getElementById('openTrialBtn');
+        const heroTrialBtn = document.getElementById('heroTrialBtn');
+        const ctaTrialBtn = document.getElementById('ctaTrialBtn');
+        const closePopup = document.getElementById('closePopup');
+        
+        function openPopup() {
+            trialPopup.style.display = 'flex';
+        }
+        
+        function closePopupFunc() {
+            trialPopup.style.display = 'none';
+        }
+        
+        openTrialBtn.addEventListener('click', openPopup);
+        heroTrialBtn.addEventListener('click', openPopup);
+        ctaTrialBtn.addEventListener('click', openPopup);
+        closePopup.addEventListener('click', closePopupFunc);
+        
+        // Cerrar popup al hacer clic fuera del contenido
+        trialPopup.addEventListener('click', function(e) {
+            if (e.target === trialPopup) {
+                closePopupFunc();
+            }
+        });
+        
+        // Enviar formulario de prueba
+        document.querySelector('.popup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias! Tu solicitud de prueba gratuita ha sido enviada. Te contactaremos en breve con tus credenciales de acceso.');
+            closePopupFunc();
+        });
     </script>
 </body>
-                    </html>
+</html>
