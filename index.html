@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TvProTeam - Servicio de TV Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -12,6 +13,8 @@
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
             --success-color: #2ecc71;
+            --whatsapp-color: #25D366;
+            --telegram-color: #0088cc;
         }
         
         * {
@@ -348,6 +351,51 @@
             max-height: 500px;
         }
         
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .whatsapp-btn {
+            background-color: var(--whatsapp-color);
+        }
+        
+        .telegram-btn {
+            background-color: var(--telegram-color);
+        }
+        
+        .contact-btn i {
+            font-size: 1.5rem;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--secondary-color);
@@ -433,6 +481,17 @@
             .steps {
                 flex-direction: column;
             }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -448,6 +507,7 @@
                         <li><a href="#features">Características</a></li>
                         <li><a href="#pricing">Precios</a></li>
                         <li><a href="#how-it-works">Cómo Funciona</a></li>
+                        <li><a href="#contact">Contacto</a></li>
                         <li><a href="#faq">FAQ</a></li>
                         <li><a href="#" class="btn">Comenzar</a></li>
                     </ul>
@@ -527,7 +587,7 @@
                         <li>Calidad Full HD y 4K</li>
                         <li>Actualizaciones diarias</li>
                     </ul>
-                    <a href="#" class="btn">Seleccionar Plan</a>
+                    <a href="#contact" class="btn">Seleccionar Plan</a>
                 </div>
                 <div class="pricing-card popular">
                     <div class="popular-badge">Más Popular</div>
@@ -543,7 +603,7 @@
                         <li>Actualizaciones diarias</li>
                         <li>2 meses gratis</li>
                     </ul>
-                    <a href="#" class="btn">Seleccionar Plan</a>
+                    <a href="#contact" class="btn">Seleccionar Plan</a>
                 </div>
             </div>
         </div>
@@ -564,14 +624,34 @@
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Regístrate</h3>
-                    <p>Crea tu cuenta y realiza el pago de forma segura.</p>
+                    <h3>Contáctanos</h3>
+                    <p>Escoge tu plan y contáctanos por WhatsApp o Telegram para activar tu suscripción.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>Disfruta</h3>
                     <p>Descarga la app, inicia sesión y comienza a disfrutar del contenido.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contáctanos</h2>
+                <p>Elige tu plan y contáctanos para activar tu suscripción</p>
+            </div>
+            <div class="contact-buttons">
+                <a href="https://wa.me/34614617984?text=Hola,%20estoy%20interesado%20en%20el%20servicio%20TvProTeam" class="contact-btn whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp: 614 61 79 84</span>
+                </a>
+                <a href="https://t.me/TvProTeam" class="contact-btn telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram: @TvProTeam</span>
+                </a>
             </div>
         </div>
     </section>
@@ -647,14 +727,15 @@
                         <li><a href="#features">Características</a></li>
                         <li><a href="#pricing">Precios</a></li>
                         <li><a href="#how-it-works">Cómo Funciona</a></li>
+                        <li><a href="#contact">Contacto</a></li>
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Soporte</h3>
                     <ul>
-                        <li><a href="#">Centro de Ayuda</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="https://wa.me/34614617984" target="_blank">WhatsApp</a></li>
+                        <li><a href="https://t.me/TvProTeam" target="_blank">Telegram</a></li>
                         <li><a href="#">Política de Privacidad</a></li>
                         <li><a href="#">Términos de Servicio</a></li>
                     </ul>
@@ -706,4 +787,4 @@
         });
     </script>
 </body>
-</html>
+                    </html>
