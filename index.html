@@ -91,6 +91,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .btn:hover {
@@ -519,6 +521,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            text-decoration: none;
         }
         
         .float-btn:hover {
@@ -666,7 +669,7 @@
 <body>
     <!-- Botones flotantes de WhatsApp y Telegram -->
     <div class="float-buttons">
-        <a href="https://wa.me/34614617984" class="float-btn whatsapp-btn" target="_blank">
+        <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20una%20prueba%20de%2024%20horas%20de%20TVPROTEAM" class="float-btn whatsapp-btn" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
         <a href="https://t.me/TVPROTEAM" class="float-btn telegram-btn" target="_blank">
@@ -706,7 +709,7 @@
                         <li><a href="#precios">Precios</a></li>
                     </ul>
                 </nav>
-                <button class="btn" id="openTrialBtn">PRUEBA GRATIS</button>
+                <a href="#precios" class="btn">VER PLANES</a>
             </div>
         </div>
     </header>
@@ -717,8 +720,8 @@
             <h2>TVPROTEAM - IPTV Deportivo Premium</h2>
             <p>Con TVPROTEAM podemos ofrecerte acceso a más de 11000 canales de IPTV de todos los países del mundo. ¡Descubre la lista de canales y no te sentirás decepcionado!</p>
             <div class="hero-btns">
-                <button class="btn" id="heroTrialBtn">PRUEBA GRATIS 24H</button>
-                <button class="btn btn-secondary">VER PLANES</button>
+                <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20una%20prueba%20de%2024%20horas%20de%20TVPROTEAM" class="btn" target="_blank">PRUEBA GRATIS 24H</a>
+                <a href="#precios" class="btn btn-secondary">VER PLANES</a>
             </div>
         </div>
     </section>
@@ -906,7 +909,7 @@
                         <li>Calidad Full HD/4K</li>
                         <li>Guía de programación EPG</li>
                     </ul>
-                    <button class="btn">SUSCRIBIRSE</button>
+                    <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20suscribirme%20al%20plan%20mensual%20de%2015€" class="btn" target="_blank">SUSCRIBIRSE</a>
                 </div>
                 <div class="pricing-card popular">
                     <div class="popular-badge">POPULAR</div>
@@ -921,7 +924,7 @@
                         <li>Guía de programación EPG</li>
                         <li>Ahorras 100€ al año</li>
                     </ul>
-                    <button class="btn">SUSCRIBIRSE</button>
+                    <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20suscribirme%20al%20plan%20anual%20de%2080€" class="btn" target="_blank">SUSCRIBIRSE</a>
                 </div>
             </div>
         </div>
@@ -1045,7 +1048,7 @@
         <div class="container">
             <h2>Únete a TVPROTEAM hoy mismo</h2>
             <p>Elegir la película adecuada nunca ha sido tan fácil. Obtén la última información sobre los próximos estrenos de películas.</p>
-            <button class="btn" id="ctaTrialBtn">PRUEBA GRATIS 24H</button>
+            <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20una%20prueba%20de%2024%20horas%20de%20TVPROTEAM" class="btn" target="_blank">PRUEBA GRATIS 24H</a>
         </div>
     </section>
 
@@ -1118,33 +1121,14 @@
             }
         });
         
-        // Animación para los botones de suscripción
-        document.querySelectorAll('.btn').forEach(button => {
-            if (!button.id.includes('Trial')) {
-                button.addEventListener('click', function() {
-                    alert('¡Gracias por tu interés en TVPROTEAM! Serás redirigido a nuestra página de suscripción.');
-                });
-            }
-        });
-        
         // Funcionalidad del popup de prueba gratis
         const trialPopup = document.getElementById('trialPopup');
-        const openTrialBtn = document.getElementById('openTrialBtn');
-        const heroTrialBtn = document.getElementById('heroTrialBtn');
-        const ctaTrialBtn = document.getElementById('ctaTrialBtn');
         const closePopup = document.getElementById('closePopup');
-        
-        function openPopup() {
-            trialPopup.style.display = 'flex';
-        }
         
         function closePopupFunc() {
             trialPopup.style.display = 'none';
         }
         
-        openTrialBtn.addEventListener('click', openPopup);
-        heroTrialBtn.addEventListener('click', openPopup);
-        ctaTrialBtn.addEventListener('click', openPopup);
         closePopup.addEventListener('click', closePopupFunc);
         
         // Cerrar popup al hacer clic fuera del contenido
