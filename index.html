@@ -233,6 +233,30 @@
         /* Sports Section */
         .sports {
             padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sports::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.9)),
+                url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1290&q=80') center/cover,
+                url('https://images.unsplash.com/photo-1588347818122-c6f4e0dfbace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover,
+                url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80') center/cover;
+            background-blend-mode: overlay;
+            filter: blur(3px) brightness(0.7);
+            z-index: -1;
+        }
+        
+        .sports .container {
+            position: relative;
+            z-index: 1;
         }
         
         .sports-grid {
@@ -243,15 +267,18 @@
         }
         
         .sport-card {
-            background: linear-gradient(145deg, #152340, #0e1729);
+            background: linear-gradient(145deg, rgba(21, 35, 64, 0.9), rgba(14, 23, 41, 0.9));
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 0, 0.2);
         }
         
         .sport-card:hover {
             transform: translateY(-10px);
+            border-color: rgba(255, 107, 0, 0.5);
         }
         
         .sport-img {
@@ -267,6 +294,7 @@
         .sport-content h3 {
             font-size: 20px;
             margin-bottom: 10px;
+            color: #ff9d00;
         }
         
         /* Pricing Section */
@@ -662,6 +690,13 @@
             
             .movies-carousel {
                 animation: scrollMovies 60s linear infinite;
+            }
+            
+            .sports::before {
+                background: 
+                    linear-gradient(rgba(10, 15, 30, 0.9), rgba(10, 15, 30, 0.95)),
+                    url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1290&q=80') center/cover;
+                filter: blur(2px) brightness(0.6);
             }
         }
     </style>
@@ -1079,7 +1114,7 @@
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@tvproteam.com</li>
+                        <li><i class="fas fa-envelope"></i> tvproteamiptv@gmail.com</li>
                         <li><i class="fas fa-phone"></i> +34 614 617 984</li>
                         <li><i class="fab fa-whatsapp"></i> WhatsApp: 614617984</li>
                         <li><i class="fab fa-telegram"></i> Telegram: TVPROTEAM</li>
@@ -1087,7 +1122,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 TVPROTEAM. Todos los derechos reservados.</p>
+                <p>&copy; 2025 TVPROTEAM. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
