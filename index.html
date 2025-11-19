@@ -334,6 +334,16 @@
             transform: scale(1.05) translateY(-10px);
         }
         
+        .pricing-card.premium {
+            border: 2px solid #ffd700;
+            transform: scale(1.05);
+            background: linear-gradient(145deg, #2a1a57, #1b0d3a);
+        }
+        
+        .pricing-card.premium:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
         .popular-badge {
             position: absolute;
             top: 20px;
@@ -346,10 +356,26 @@
             font-weight: bold;
         }
         
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #ffd700;
+            color: #1a1a1a;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
         .pricing-card h3 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #ff9d00;
+        }
+        
+        .pricing-card.premium h3 {
+            color: #ffd700;
         }
         
         .price {
@@ -362,6 +388,17 @@
         .price span {
             font-size: 16px;
             color: #b0b0b0;
+        }
+        
+        .devices {
+            font-size: 18px;
+            color: #ff9d00;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .pricing-card.premium .devices {
+            color: #ffd700;
         }
         
         .pricing-features {
@@ -382,6 +419,10 @@
             left: 0;
             color: #ff6b00;
             font-weight: bold;
+        }
+        
+        .pricing-card.premium .pricing-features li:before {
+            color: #ffd700;
         }
         
         /* Movies Section */
@@ -669,11 +710,13 @@
                 grid-template-columns: 1fr;
             }
             
-            .pricing-card.popular {
+            .pricing-card.popular,
+            .pricing-card.premium {
                 transform: scale(1);
             }
             
-            .pricing-card.popular:hover {
+            .pricing-card.popular:hover,
+            .pricing-card.premium:hover {
                 transform: scale(1) translateY(-10px);
             }
             
@@ -915,7 +958,7 @@
                     </div>
                 </div>
                 <div class="sport-card">
-                    <div class="sport-img" style="background-image: url('https://images.pexels.com/photos/29406740/pexels-photo-29406740.jpeg');"></div>
+                    <div class="sport-img" style="background-image: url('https://images.unsplash.com/photo-1588347818122-c6f4e0dfbace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
                     <div class="sport-content">
                         <h3>Fórmula 1</h3>
                         <p>Todas las carreras, clasificaciones y entrenamientos.</p>
@@ -934,8 +977,9 @@
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>Plan Mensual</h3>
+                    <h3>Plan Básico</h3>
                     <div class="price">15€<span>/mes</span></div>
+                    <div class="devices">1 Dispositivo</div>
                     <ul class="pricing-features">
                         <li>Más de 11,000 canales</li>
                         <li>Eventos deportivos en vivo</li>
@@ -944,12 +988,13 @@
                         <li>Calidad Full HD/4K</li>
                         <li>Guía de programación EPG</li>
                     </ul>
-                    <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20suscribirme%20al%20plan%20mensual%20de%2015€" class="btn" target="_blank">SUSCRIBIRSE</a>
+                    <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20suscribirme%20al%20plan%20básico%20de%2015€%20mensuales" class="btn" target="_blank">SUSCRIBIRSE</a>
                 </div>
                 <div class="pricing-card popular">
                     <div class="popular-badge">POPULAR</div>
-                    <h3>Plan Anual</h3>
+                    <h3>Plan Estándar</h3>
                     <div class="price">80€<span>/año</span></div>
+                    <div class="devices">1 Dispositivo</div>
                     <ul class="pricing-features">
                         <li>Más de 11,000 canales</li>
                         <li>Eventos deportivos en vivo</li>
@@ -959,7 +1004,25 @@
                         <li>Guía de programación EPG</li>
                         <li>Ahorras 100€ al año</li>
                     </ul>
-                    <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20suscribirme%20al%20plan%20anual%20de%2080€" class="btn" target="_blank">SUSCRIBIRSE</a>
+                    <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20suscribirme%20al%20plan%20estándar%20de%2080€%20anuales" class="btn" target="_blank">SUSCRIBIRSE</a>
+                </div>
+                <div class="pricing-card premium">
+                    <div class="premium-badge">PREMIUM</div>
+                    <h3>Plan Familiar</h3>
+                    <div class="price">150€<span>/año</span></div>
+                    <div class="devices">3 Dispositivos Simultáneos</div>
+                    <ul class="pricing-features">
+                        <li>Más de 11,000 canales</li>
+                        <li>Eventos deportivos en vivo</li>
+                        <li>Películas y series ilimitadas</li>
+                        <li>Soporte 24/7</li>
+                        <li>Calidad Full HD/4K</li>
+                        <li>Guía de programación EPG</li>
+                        <li>3 dispositivos simultáneos</li>
+                        <li>Perfecto para familias</li>
+                        <li>Ahorro máximo</li>
+                    </ul>
+                    <a href="https://wa.me/34614617984?text=¡Hola!%20Quiero%20suscribirme%20al%20plan%20familiar%20de%20150€%20anuales%20para%203%20dispositivos" class="btn" target="_blank">SUSCRIBIRSE</a>
                 </div>
             </div>
         </div>
