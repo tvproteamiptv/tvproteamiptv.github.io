@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TvProTeam – IPTV Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #e8001c;
+    --orange: #ff6b00;
+    --gold: #ffd600;
+    --dark: #060810;
+    --dark2: #0c1020;
+    --light: #f0f4ff;
+    --muted: #8899bb;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--light); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: .4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(to bottom, rgba(6,8,16,.97), transparent);
+    backdrop-filter: blur(8px);
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: .08em;
+    background: linear-gradient(135deg, var(--red), var(--orange), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
+  }
+  .logo span { -webkit-text-fill-color: var(--light); }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    color: var(--muted); text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; transition: color .2s;
+  }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta { background: var(--red) !important; color: #fff !important; padding: .4rem 1.2rem; border-radius: 3px; font-weight: 700 !important; }
+  .nav-cta:hover { background: var(--orange) !important; }
+  @media(max-width:768px) { nav ul { display: none; } }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden; padding: 6rem 2rem 4rem;
+  }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 90% 70% at 50% 40%, #1a0a2e 0%, var(--dark) 70%); }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(232,0,28,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(232,0,28,.06) 1px, transparent 1px);
+    background-size: 60px 60px; animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove { to { background-position: 60px 60px; } }
+  .hero-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; top: -150px; left: -150px; background: radial-gradient(circle, rgba(232,0,28,.2), transparent 65%); animation: pulse 5s ease-in-out infinite alternate; }
+  .hero-glow2 { right: -100px; left: auto; top: auto; bottom: -80px; background: radial-gradient(circle, rgba(255,107,0,.15), transparent 65%); animation-delay: 2.5s; }
+  @keyframes pulse { from { transform: scale(.88); } to { transform: scale(1.15); } }
+  .hero-content { position: relative; z-index: 2; max-width: 960px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(232,0,28,.12); border: 1px solid rgba(232,0,28,.35);
+    padding: .35rem 1.1rem; border-radius: 100px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+    color: #ff7070; margin-bottom: 1.5rem; animation: fadeDown .8s ease both;
+  }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: blink 1.2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.15} }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.8rem, 10vw, 9rem);
+    line-height: .92; letter-spacing: .02em; animation: fadeDown .9s .1s ease both;
+  }
+  h1 .stroke { -webkit-text-stroke: 2px var(--red); color: transparent; }
+  h1 em { font-style: normal; color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted);
+    max-width: 620px; margin: 1.5rem auto 2.5rem; line-height: 1.65;
+    animation: fadeDown 1s .2s ease both;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeDown 1s .35s ease both; }
+  @keyframes fadeDown { from { opacity:0; transform: translateY(-22px); } to { opacity:1; transform: translateY(0); } }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .9rem 2rem; border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; letter-spacing: .1em; text-transform: uppercase;
+    font-weight: 700; text-decoration: none; cursor: pointer;
+    transition: transform .2s, box-shadow .2s; border: none;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0,0,0,.5); }
+  .btn-primary { background: linear-gradient(135deg, var(--red), var(--orange)); color: #fff; }
+  .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,.2); color: var(--light); }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--dark2);
+    border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06);
+    padding: 1.5rem 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; background: linear-gradient(135deg, var(--red), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+  /* SHARED */
+  section { padding: 5rem 2rem; }
+  .si { max-width: 1150px; margin: 0 auto; }
+  .stag { font-family: 'Barlow Condensed', sans-serif; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .6rem; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; letter-spacing: .02em; margin-bottom: 1rem; }
+  h2 .hl { color: var(--gold); }
+  .lead { color: var(--muted); font-size: 1.02rem; line-height: 1.7; max-width: 580px; margin-bottom: 3rem; }
+
+  /* FEATURES */
+  #features { background: var(--dark2); }
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.5rem; }
+  .feat-card {
+    background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 8px; padding: 1.8rem; transition: border-color .25s, transform .25s;
+    position: relative; overflow: hidden;
+  }
+  .feat-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,0,28,.07), transparent 60%); opacity: 0; transition: opacity .25s; }
+  .feat-card:hover { border-color: rgba(232,0,28,.4); transform: translateY(-4px); }
+  .feat-card:hover::before { opacity: 1; }
+  .feat-icon { font-size: 2.3rem; margin-bottom: 1rem; }
+  .feat-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .5rem; }
+  .feat-card p { color: var(--muted); font-size: .88rem; line-height: 1.65; }
+
+  /* ═══ SPORTS ═══ */
+  #sports { background: var(--dark); padding: 0; }
+
+  /* Imagen hero deportes */
+  .sports-hero {
+    position: relative; width: 100%; height: 88vh; min-height: 580px;
+    display: flex; align-items: center; overflow: hidden;
+  }
+  .sports-hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 30%;
+    transition: transform 9s ease;
+    filter: brightness(.65) saturate(1.2);
+  }
+  .sports-hero:hover .sports-hero-img { transform: scale(1.05); }
+  .s-ov1 { position: absolute; inset: 0; background: linear-gradient(to right, rgba(6,8,16,.93) 38%, rgba(6,8,16,.25) 100%); }
+  .s-ov2 { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,8,16,.9) 0%, transparent 55%); }
+  .s-ov3 { position: absolute; inset: 0; background: radial-gradient(ellipse at 0% 50%, rgba(232,0,28,.18) 0%, transparent 55%); }
+  .sports-hero-body {
+    position: relative; z-index: 2; padding: 3rem 4rem; max-width: 660px;
+  }
+  .sports-hero-body h2 { font-size: clamp(3rem, 6vw, 5.8rem); margin-bottom: 1rem; }
+  .sports-hero-body p { color: var(--muted); line-height: 1.7; font-size: 1.05rem; margin-bottom: 2rem; max-width: 490px; }
+  .pills-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; }
+  .pill {
+    display: flex; align-items: center; gap: .45rem;
+    background: rgba(255,255,255,.08); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.15); border-radius: 100px;
+    padding: .45rem 1rem; font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--light); transition: all .2s; cursor: default;
+  }
+  .pill:hover { border-color: var(--gold); color: var(--gold); background: rgba(255,214,0,.08); }
+
+  /* 3 sport cards con fondo de imagen */
+  .sport-cards { display: grid; grid-template-columns: repeat(3, 1fr); }
+  @media(max-width:860px) { .sport-cards { grid-template-columns: 1fr; } }
+  .sc { position: relative; height: 500px; overflow: hidden; }
+  .sc-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 7s ease; filter: brightness(.7) saturate(1.15);
+  }
+  .sc:hover .sc-img { transform: scale(1.09); }
+  .sc-ov {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(6,8,16,.97) 0%, rgba(6,8,16,.15) 55%, transparent 100%);
+    transition: background .35s;
+  }
+  .sc:hover .sc-ov { background: linear-gradient(to top, rgba(6,8,16,1) 0%, rgba(232,0,28,.18) 50%, transparent 100%); }
+  .sc-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1.8rem; z-index: 2; }
+  .sc-icon { font-size: 2.5rem; margin-bottom: .7rem; }
+  .sc-line { width: 38px; height: 3px; background: var(--red); border-radius: 2px; margin-bottom: .8rem; transition: width .35s, background .35s; }
+  .sc:hover .sc-line { width: 75px; background: var(--gold); }
+  .sc-body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.3rem; letter-spacing: .04em; line-height: 1; margin-bottom: .5rem; }
+  .sc-body p { color: var(--muted); font-size: .85rem; line-height: 1.55; }
+
+  /* PLANS */
+  #pricing { background: var(--dark2); }
+  .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.5rem; }
+  .plan-card {
+    background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px; padding: 2rem; position: relative;
+    transition: transform .25s, border-color .25s; overflow: hidden;
+  }
+  .plan-card:hover { transform: translateY(-5px); border-color: rgba(232,0,28,.3); }
+  .plan-card.pop { border-color: var(--red); background: rgba(232,0,28,.06); }
+  .plan-card.pop::after {
+    content: 'MÁS POPULAR'; position: absolute; top: 0; right: 0;
+    background: var(--red); font-family: 'Barlow Condensed', sans-serif;
+    font-size: .6rem; letter-spacing: .12em; padding: .3rem .9rem; border-radius: 0 12px 0 12px;
+  }
+  .plan-card.vpn { border-color: rgba(255,214,0,.3); background: rgba(255,214,0,.04); }
+  .plan-card.vpn:hover { border-color: var(--gold); }
+  .plan-ico { font-size: 2.5rem; margin-bottom: 1rem; }
+  .plan-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .04em; margin-bottom: .3rem; }
+  .plan-dev {
+    font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; color: var(--muted);
+    letter-spacing: .06em; text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,.07); padding-bottom: 1.2rem; margin-bottom: 1.3rem;
+  }
+  .plan-ul { list-style: none; margin-bottom: 2rem; }
+  .plan-ul li { display: flex; align-items: flex-start; gap: .6rem; font-size: .88rem; color: var(--muted); padding: .38rem 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .plan-ul li:last-child { border-bottom: none; }
+  .plan-ul li::before { content: '✓'; color: #3bff8a; font-weight: 700; flex-shrink: 0; }
+  .plan-ul li.lock::before { content: '🔒'; font-size: .78rem; }
+  .plan-btn {
+    display: block; text-align: center; text-decoration: none; padding: .85rem; border-radius: 6px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: .9rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    transition: all .2s; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); color: var(--light);
+  }
+  .plan-btn:hover { background: rgba(255,255,255,.14); }
+  .plan-card.pop .plan-btn { background: linear-gradient(135deg, var(--red), var(--orange)); border: none; color: #fff; }
+  .plan-card.vpn .plan-btn { border-color: var(--gold); color: var(--gold); }
+  .plan-card.vpn .plan-btn:hover { background: rgba(255,214,0,.1); }
+
+  /* DEVICES */
+  #devices { background: var(--dark); }
+  .dev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 1.2rem; }
+  .dev-card {
+    background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 10px; padding: 1.8rem; text-align: center; transition: all .25s;
+  }
+  .dev-card:hover { border-color: rgba(255,107,0,.4); transform: translateY(-3px); background: rgba(255,107,0,.04); }
+  .dev-ico { font-size: 2.8rem; margin-bottom: .9rem; }
+  .dev-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: .95rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem; }
+  .dev-card p { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+
+  /* STREMIO */
+  #stremio { background: var(--dark2); }
+  .str-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  @media(max-width:768px) { .str-layout { grid-template-columns: 1fr; } }
+  .str-box {
+    background: linear-gradient(135deg, #0f0f23, #1a1a3e);
+    border: 1px solid rgba(100,80,220,.3); border-radius: 16px; padding: 2rem;
+    overflow: hidden; position: relative;
+  }
+  .str-box::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 30%, rgba(100,80,220,.25), transparent 60%); }
+  .str-logo { font-family: 'Bebas Neue', sans-serif; font-size: 3.8rem; color: #7c5fff; position: relative; z-index: 1; }
+  .str-box > p { color: var(--muted); font-size: .88rem; position: relative; z-index: 1; }
+  .cat-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; position: relative; z-index: 1; }
+  .cat-pill {
+    background: rgba(124,95,255,.12); border: 1px solid rgba(124,95,255,.25);
+    border-radius: 100px; padding: .28rem .8rem;
+    font-size: .7rem; font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: .07em; text-transform: uppercase; color: #a99cff;
+  }
+  .vid-box {
+    background: linear-gradient(135deg, #0d1018, #1a1f35);
+    border: 1px solid rgba(255,255,255,.07); border-radius: 12px;
+    aspect-ratio: 16/9; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 1rem;
+    text-decoration: none; transition: all .25s; margin-top: 1.4rem;
+    position: relative; overflow: hidden;
+  }
+  .vid-box::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(124,95,255,.1), rgba(232,0,28,.08)); }
+  .vid-box:hover { border-color: rgba(124,95,255,.5); transform: scale(1.02); }
+  .play { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #7c5fff, var(--red)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; position: relative; z-index: 1; transition: transform .2s; }
+  .vid-box:hover .play { transform: scale(1.12); }
+  .vid-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); position: relative; z-index: 1; }
+
+  /* IBO */
+  #iboplayer { background: var(--dark); }
+  .ibo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  @media(max-width:768px) { .ibo-layout { grid-template-columns: 1fr; } }
+  .ibo-card { background: linear-gradient(135deg, #0e1a0c, #162b12); border: 1px solid rgba(60,200,80,.2); border-radius: 16px; padding: 2.5rem; text-align: center; }
+  .ibo-ico { font-size: 4rem; margin-bottom: 1rem; }
+  .ibo-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: #5dde7a; margin-bottom: .5rem; }
+  .ibo-card p { color: var(--muted); font-size: .92rem; line-height: 1.65; }
+  .ibo-list { list-style: none; display: flex; flex-direction: column; gap: .8rem; margin-bottom: 2rem; }
+  .ibo-list li { color: var(--muted); font-size: .9rem; display: flex; gap: .6rem; align-items: flex-start; }
+  .ibo-list li span { color: #5dde7a; font-weight: 700; flex-shrink: 0; }
+
+  /* CONTACTO */
+  #contacto { background: linear-gradient(135deg, #0f0208, var(--dark2)); text-align: center; border-top: 1px solid rgba(232,0,28,.2); }
+  .cnt-cards { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; }
+  .cnt-card {
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 10px; padding: 1.5rem 2rem; text-align: center;
+    min-width: 200px; text-decoration: none; color: var(--light); transition: all .25s;
+  }
+  .cnt-card:hover { border-color: var(--gold); transform: translateY(-3px); background: rgba(255,214,0,.05); }
+  .cnt-ico { font-size: 2rem; margin-bottom: .5rem; }
+  .cnt-type { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+  .cnt-val { font-size: 1.1rem; font-weight: 600; }
+
+  /* FOOTER */
+  footer { background: #030406; padding: 2.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,.05); }
+  .foot-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .08em; background: linear-gradient(135deg, var(--red), var(--orange), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; margin-bottom: .7rem; }
+  footer p { color: var(--muted); font-size: .8rem; }
+  footer .copy { margin-top: .5rem; font-size: .72rem; opacity: .5; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">TvPro<span>Team</span></a>
+  <ul>
+    <li><a href="#features">Canales</a></li>
+    <li><a href="#sports">Deportes</a></li>
+    <li><a href="#pricing">Planes</a></li>
+    <li><a href="#stremio">Stremio</a></li>
+    <li><a href="#contacto" class="nav-cta">Contratar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow hero-glow2"></div>
+  <div class="hero-content">
+    <div class="badge"><span class="badge-dot"></span> Acceso instantáneo disponible</div>
+    <h1><span class="stroke">REVOLUCIÓN</span><br><em>TV PREMIUM</em></h1>
+    <p class="hero-sub">Más de <strong>11,000 canales</strong> en directo, miles de películas y series, deportes en vivo y tecnología <strong>Anti-Buffer™ 3.0</strong> sin interrupciones.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn btn-primary">🚀 Empezar ahora</a>
+      <a href="#pricing" class="btn btn-outline">Ver planes</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">+11K</div><div class="stat-label">Canales en directo</div></div>
+  <div class="stat"><div class="stat-num">FHD</div><div class="stat-label">Calidad máxima</div></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Soporte activo</div></div>
+  <div class="stat"><div class="stat-num">99.9%</div><div class="stat-label">Uptime garantizado</div></div>
+  <div class="stat"><div class="stat-num">0</div><div class="stat-label">Interrupciones</div></div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="si">
+    <div class="stag">¿Qué incluye?</div>
+    <h2>Todo lo que <span class="hl">necesitas</span></h2>
+    <p class="lead">Una plataforma completa pensada para vivir la televisión al máximo nivel.</p>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">📡</div><h3>+11,000 Canales HD/FHD</h3><p>Canales de todo el mundo. Nacionales, internacionales, temáticos y de pago en alta definición.</p></div>
+      <div class="feat-card"><div class="feat-icon">⚡</div><h3>Anti-Buffer™ 3.0</h3><p>Tecnología exclusiva que elimina los cortes. Flujo continuo garantizado en todo momento.</p></div>
+      <div class="feat-card"><div class="feat-icon">📋</div><h3>EPG Completa</h3><p>Guía de programación electrónica siempre actualizada en todos los canales principales.</p></div>
+      <div class="feat-card"><div class="feat-icon">🎬</div><h3>Miles de VOD</h3><p>Películas, series, documentales y anime. Una videoteca completa siempre disponible.</p></div>
+      <div class="feat-card"><div class="feat-icon">👥</div><h3>Multi-usuario</h3><p>Acceso simultáneo para varios usuarios en un solo plan. Ideal para toda la familia.</p></div>
+      <div class="feat-card"><div class="feat-icon">🗓️</div><h3>Próximos estrenos</h3><p>Mantente al día con trailers, críticas y fechas de estreno de las últimas películas y series.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPORTS ═══ -->
+<section id="sports">
+
+  <!-- Gran imagen hero deportes -->
+  <div class="sports-hero">
+    <img
+      class="sports-hero-img"
+      src="https://images.unsplash.com/photo-1504016798967-59a258e9383e?w=1800&q=85&auto=format&fit=crop"
+      alt="Deportes en vivo"
+      loading="lazy"
+      onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85&auto=format&fit=crop'"
+    />
+    <div class="s-ov1"></div>
+    <div class="s-ov2"></div>
+    <div class="s-ov3"></div>
+    <div class="sports-hero-body">
+      <div class="stag">Especialidad</div>
+      <h2>Vive el <span class="hl">deporte</span><br>en directo</h2>
+      <p>Somos expertos en transmisión deportiva. Fútbol, motos, motor y mucho más — sin perderte ningún segundo de la acción.</p>
+      <div class="pills-row">
+        <div class="pill">⚽ Fútbol</div>
+        <div class="pill">🏍️ MotoGP</div>
+        <div class="pill">🏎️ Fórmula 1</div>
+        <div class="pill">🏆 Champions</div>
+        <div class="pill">🇪🇸 La Liga</div>
+        <div class="pill">🏅 Superbike</div>
+        <div class="pill">🥊 MMA</div>
+        <div class="pill">🏀 NBA</div>
+      </div>
+      <a href="#contacto" class="btn btn-primary">📲 Ver canales deportivos</a>
+    </div>
+  </div>
+
+  <!-- 3 cards: Fútbol | MotoGP | F1 -->
+  <div class="sport-cards">
+
+    <div class="sc">
+      <img class="sc-img"
+        src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80&auto=format&fit=crop"
+        alt="Fútbol"
+        onerror="this.src='https://images.unsplash.com/photo-1551958219-acbc630e2914?w=800&q=80&auto=format&fit=crop'"
+        loading="lazy"/>
+      <div class="sc-ov"></div>
+      <div class="sc-body">
+        <div class="sc-icon">⚽</div>
+        <div class="sc-line"></div>
+        <h3>FÚTBOL</h3>
+        <p>La Liga, Champions, Premier, Bundesliga y más. Todos los partidos en HD sin perderte nada.</p>
+      </div>
+    </div>
+
+    <div class="sc">
+      <img class="sc-img"
+        src="https://images.unsplash.com/photo-1558981285-6f0c68243e6b?w=800&q=80&auto=format&fit=crop"
+        alt="MotoGP"
+        onerror="this.src='https://images.unsplash.com/photo-1530143584546-02191bc84eb5?w=800&q=80&auto=format&fit=crop'"
+        loading="lazy"/>
+      <div class="sc-ov"></div>
+      <div class="sc-body">
+        <div class="sc-icon">🏍️</div>
+        <div class="sc-line"></div>
+        <h3>MOTOGP</h3>
+        <p>MotoGP, Moto2, Moto3, WorldSBK y Superbike. Cada vuelta desde la salida hasta el podio.</p>
+      </div>
+    </div>
+
+    <div class="sc">
+      <img class="sc-img"
+        src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&q=80&auto=format&fit=crop"
+        alt="Formula 1"
+        onerror="this.src='https://images.unsplash.com/photo-1541348263662-e068662d82af?w=800&q=80&auto=format&fit=crop'"
+        loading="lazy"/>
+      <div class="sc-ov"></div>
+      <div class="sc-body">
+        <div class="sc-icon">🏎️</div>
+        <div class="sc-line"></div>
+        <h3>FÓRMULA 1</h3>
+        <p>Todos los Grandes Premios, clasificaciones y análisis en directo con la mejor calidad HD.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PLANES -->
+<section id="pricing">
+  <div class="si">
+    <div class="stag">Planes</div>
+    <h2>Elige tu <span class="hl">plan</span></h2>
+    <p class="lead">Sin permanencias. Sin sorpresas. Activa tu servicio al instante. Contáctanos para conocer las tarifas.</p>
+    <div class="plans-grid">
+
+      <div class="plan-card">
+        <div class="plan-ico">📱</div>
+        <div class="plan-name">Plan Básico</div>
+        <div class="plan-dev">1 Dispositivo simultáneo · Mensual / Anual</div>
+        <ul class="plan-ul">
+          <li>+11,000 canales HD/FHD</li>
+          <li>Acceso completo VOD</li>
+          <li>EPG actualizada</li>
+          <li>Anti-Buffer™ 3.0</li>
+          <li>Soporte 24/7</li>
+        </ul>
+        <a href="https://t.me/tvproteam" class="plan-btn" target="_blank">Contratar</a>
+      </div>
+
+      <div class="plan-card pop">
+        <div class="plan-ico">📱📱</div>
+        <div class="plan-name">Plan Familiar</div>
+        <div class="plan-dev">2 Dispositivos simultáneos · Mensual / Anual</div>
+        <ul class="plan-ul">
+          <li>+11,000 canales HD/FHD</li>
+          <li>Acceso completo VOD</li>
+          <li>EPG actualizada</li>
+          <li>Anti-Buffer™ 3.0</li>
+          <li>Soporte prioritario 24/7</li>
+          <li>Acceso multi-usuario</li>
+        </ul>
+        <a href="https://t.me/tvproteam" class="plan-btn" target="_blank">Contratar</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-ico">📱📱📱</div>
+        <div class="plan-name">Plan Premium</div>
+        <div class="plan-dev">3 Dispositivos simultáneos · Mensual / Anual</div>
+        <ul class="plan-ul">
+          <li>+11,000 canales HD/FHD</li>
+          <li>Acceso completo VOD</li>
+          <li>EPG actualizada</li>
+          <li>Anti-Buffer™ 3.0</li>
+          <li>Soporte VIP 24/7</li>
+          <li>Multi-usuario avanzado</li>
+          <li>Acceso anticipado novedades</li>
+        </ul>
+        <a href="https://t.me/tvproteam" class="plan-btn" target="_blank">Contratar</a>
+      </div>
+
+      <div class="plan-card vpn">
+        <div class="plan-ico">🔒</div>
+        <div class="plan-name">IPTV + VPN</div>
+        <div class="plan-dev">2 Dispositivos + VPN incluida · Mensual / Anual</div>
+        <ul class="plan-ul">
+          <li>Todo del Plan Familiar</li>
+          <li class="lock">VPN integrada en el plan</li>
+          <li class="lock">Privacidad y seguridad total</li>
+          <li class="lock">Acceso desde cualquier país</li>
+          <li class="lock">Sin restricciones geográficas</li>
+          <li class="lock">Velocidad optimizada</li>
+        </ul>
+        <a href="https://t.me/tvproteam" class="plan-btn" target="_blank">Contratar con VPN</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEVICES -->
+<section id="devices">
+  <div class="si">
+    <div class="stag">Compatibilidad</div>
+    <h2>En todos tus <span class="hl">dispositivos</span></h2>
+    <p class="lead">Instala nuestra IPTV en cualquier dispositivo y disfruta donde quieras.</p>
+    <div class="dev-grid">
+      <div class="dev-card"><div class="dev-ico">📺</div><h3>Smart TV</h3><p>Samsung, LG, Android TV y más.</p></div>
+      <div class="dev-card"><div class="dev-ico">📱</div><h3>Móvil & Tablet</h3><p>Android e iOS. Siempre contigo.</p></div>
+      <div class="dev-card"><div class="dev-ico">💻</div><h3>PC / Mac</h3><p>Con el reproductor que prefieras.</p></div>
+      <div class="dev-card"><div class="dev-ico">🔲</div><h3>Fire Stick</h3><p>Todos los modelos Fire TV.</p></div>
+      <div class="dev-card"><div class="dev-ico">📦</div><h3>MAG / Box</h3><p>Configuración rápida incluida.</p></div>
+      <div class="dev-card"><div class="dev-ico">🎮</div><h3>Consolas</h3><p>PlayStation, Xbox y más.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STREMIO -->
+<section id="stremio">
+  <div class="si">
+    <div class="stag">Plataforma</div>
+    <h2>Potencia <span class="hl">Stremio</span></h2>
+    <p class="lead">Combina nuestra IPTV con Stremio para acceder al catálogo más completo de películas y series 2026.</p>
+    <div class="str-layout">
+      <div>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:1.4rem;"><strong style="color:var(--light)">Stremio</strong> unifica todo tu contenido en un solo lugar. Con nuestros addons exclusivos, accederás a estrenos 2026, películas clásicas y series completas desde una interfaz elegante y fácil de usar.</p>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:2rem;">🎬 Catálogo actualizado con los <strong style="color:var(--gold)">últimos estrenos 2026</strong>, integración con IMDB, tráilers en HD y metadatos completos.</p>
+        <a href="https://t.me/tvproteam" class="btn btn-primary" target="_blank">Solicitar configuración Stremio</a>
+      </div>
+      <div>
+        <div class="str-box">
+          <div class="str-logo">STREMIO</div>
+          <p>Catálogo de películas y series 2026</p>
+          <div class="cat-pills">
+            <span class="cat-pill">Acción</span><span class="cat-pill">Sci-Fi</span>
+            <span class="cat-pill">Drama</span><span class="cat-pill">Thriller</span>
+            <span class="cat-pill">Animación</span><span class="cat-pill">Documentales</span>
+            <span class="cat-pill">Comedia</span><span class="cat-pill">Terror</span>
+            <span class="cat-pill">Estrenos 2026</span><span class="cat-pill">4K HDR</span>
+          </div>
+        </div>
+        <a href="https://www.youtube.com/results?search_query=iptv+stremio+peliculas+2026" class="vid-box" target="_blank">
+          <div class="play">▶</div>
+          <div class="vid-lbl">Ver video: IPTV + Stremio – Catálogo 2026</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IBO PLAYER -->
+<section id="iboplayer">
+  <div class="si">
+    <div class="stag">Reproductor</div>
+    <h2>IBO Player <span class="hl">Pro</span></h2>
+    <p class="lead">La mejor experiencia de reproducción IPTV, directamente en tu pantalla.</p>
+    <div class="ibo-layout">
+      <div class="ibo-card">
+        <div class="ibo-ico">▶️</div>
+        <h3>IBO PLAYER</h3>
+        <p>Reproductor IPTV profesional con interfaz intuitiva, soporte M3U, EPG integrada y acceso rápido a favoritos.</p>
+      </div>
+      <div>
+        <p style="color:var(--muted);line-height:1.9;margin-bottom:1.4rem;"><strong style="color:var(--light)">IBO Player</strong> es uno de los reproductores IPTV más estables del mercado. Compatible con Smart TV, Android, iOS y más. Te proporcionamos la lista M3U y configuración EPG — solo conéctate y disfruta.</p>
+        <ul class="ibo-list">
+          <li><span>✓</span>Compatible con Android TV y móvil</li>
+          <li><span>✓</span>Soporte M3U y Xtream Codes</li>
+          <li><span>✓</span>EPG guía completa integrada</li>
+          <li><span>✓</span>Canales favoritos y grupos</li>
+          <li><span>✓</span>Grabación de programas</li>
+        </ul>
+        <a href="https://t.me/tvproteam" class="btn btn-primary" target="_blank">📲 Solicitar configuración IBO</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="si">
+    <div class="stag">Contacto</div>
+    <h2>¡Empieza <span class="hl">hoy mismo!</span></h2>
+    <p class="lead" style="margin:0 auto 2.5rem;">Escríbenos y activa tu acceso en minutos. Sin burocracia, sin esperas.</p>
+    <a href="https://t.me/tvproteam" class="btn btn-primary" style="font-size:1.1rem;padding:1.1rem 2.8rem;" target="_blank">🚀 Contactar en Telegram</a>
+    <div class="cnt-cards">
+      <a href="tel:614617984" class="cnt-card">
+        <div class="cnt-ico">📞</div>
+        <div class="cnt-type">Teléfono</div>
+        <div class="cnt-val">614 61 79 84</div>
+      </a>
+      <a href="https://t.me/tvproteam" class="cnt-card" target="_blank">
+        <div class="cnt-ico">✈️</div>
+        <div class="cnt-type">Telegram</div>
+        <div class="cnt-val">@TvProTeam</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-logo">TvProTeam</span>
+  <p>La mejor experiencia IPTV · +11,000 canales · VOD · Anti-Buffer™ 3.0 · Deportes en directo</p>
+  <p class="copy">© 2026 TvProTeam. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  // Scroll reveal con stagger
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.07 });
+
+  document.querySelectorAll('.feat-card, .plan-card, .dev-card, .pill, .sc').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(26px)';
+    el.style.transition = `opacity .55s ${i * 0.055}s ease, transform .55s ${i * 0.055}s ease, border-color .25s, background .25s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
